@@ -1,0 +1,82 @@
+{
+  "name": "dotsense",
+  "productName": "DotSense",
+  "version": "3.0.0",
+  "description": "DotSense - type, speak or scan text, get Grade-1 braille G-code, and punch it live on a GRBL 3018 CNC",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "test": "node tests/core.test.cjs && node tests/grbl.test.cjs && node tests/voice.test.cjs && node tests/wifi.test.cjs && node tests/phone.test.cjs",
+    "simulator": "node -e \"process.env.DOTSENSE_SIMULATOR='1';require('child_process').spawn(require('electron'),['.'],{stdio:'inherit',env:process.env})\""
+  },
+  "dependencies": {
+    "@tesseract.js-data/ben": "1.0.0",
+    "@tesseract.js-data/eng": "1.0.0",
+    "jszip": "3.10.1",
+    "pdfjs-dist": "6.3.289",
+    "qrcode-generator": "2.0.4",
+    "serialport": "13.0.0",
+    "sherpa-onnx-node": "1.13.8",
+    "tar-stream": "3.2.1",
+    "tesseract.js": "6.0.1",
+    "unbzip2-stream": "1.4.3"
+  },
+  "devDependencies": {
+    "electron": "44.4.5",
+    "electron-builder": "26.15.3"
+  },
+  "build": {
+    "appId": "com.ekabir.dotsense",
+    "productName": "DotSense",
+    "directories": {
+      "buildResources": "build",
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "index.html",
+      "styles.css",
+      "theme.js",
+      "renderer.js",
+      "core.js",
+      "invert.js",
+      "invert.html",
+      "grbl.js",
+      "fake-grbl.js",
+      "voice-worker.js",
+      "voice-models.js",
+      "capture-worklet.js",
+      "wifi.js",
+      "phone-server.js",
+      "phone-page.html",
+      "build/icon.png",
+      "brand/**/*"
+    ],
+    "asar": false,
+    "npmRebuild": false,
+    "win": {
+      "target": "nsis",
+      "icon": "build/icon.png"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    },
+    "mac": {
+      "target": "dmg",
+      "icon": "build/icon.png",
+      "extendInfo": {
+        "NSMicrophoneUsageDescription": "DotSense uses the microphone for voice typing. Speech is recognised offline on this computer."
+      }
+    },
+    "linux": {
+      "target": "AppImage",
+      "icon": "build/icon.png",
+      "category": "Utility"
+    },
+    "copyright": "Copyright © 2026 Tahasin Kabir Rubai"
+  },
+  "author": "Tahasin Kabir Rubai"
+}

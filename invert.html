@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:">
+<title>DotSense - Invert view</title>
+<link rel="stylesheet" href="styles.css">
+<script src="theme.js"></script>
+</head>
+<body class="invert-page">
+
+<header class="app-header">
+  <div class="brand">
+    <svg class="logo" viewBox="0 0 18 26" aria-hidden="true">
+      <circle class="on" cx="4.5" cy="4.5" r="3.2"/><circle class="on" cx="13.5" cy="4.5" r="3.2"/>
+      <circle class="off" cx="4.5" cy="13" r="3"/><circle class="on" cx="13.5" cy="13" r="3.2"/>
+      <circle class="off" cx="4.5" cy="21.5" r="3"/><circle class="off" cx="13.5" cy="21.5" r="3"/>
+    </svg>
+    <h1>Invert view</h1>
+    <span class="tag">Machine side · mirrored</span>
+  </div>
+  <div class="sub">What the machine punches on the top of the sheet. Turn the sheet over (left to right) to read it.</div>
+  <div class="header-actions">
+    <span class="pill" id="invertPill" data-tone="ok"><span class="led"></span><span id="invertPillText">Invert print ON</span></span>
+  </div>
+</header>
+
+<section class="panel" aria-labelledby="flipTitle">
+  <div class="panel-head">
+    <h2 id="flipTitle" class="flip-title"><span id="readText" class="mono"></span><span class="arrow" aria-hidden="true">→</span><span id="punchText" class="mono"></span></h2>
+    <div class="pager">
+      <button class="btn icon" id="prevPage" type="button" aria-label="Previous page">‹</button>
+      <span id="pageLabel">No pages</span>
+      <button class="btn icon" id="nextPage" type="button" aria-label="Next page">›</button>
+    </div>
+  </div>
+  <div id="offNotice" class="notice" hidden>
+    <p>Invert print is OFF: the machine punches the normal (reading) layout, not this mirrored one.</p>
+    <div class="btnrow"><button class="btn primary small" id="turnOn" type="button">Turn invert print on</button></div>
+  </div>
+  <div id="printNote" class="notice good" hidden></div>
+  <div class="preview-wrap tall" id="preview" role="img" aria-label="Mirrored braille page"></div>
+  <p id="bounds" class="hint mono"></p>
+  <p class="hint">Each line is mirrored across the full print width, so short lines sit on the right here and on the left after you turn the sheet over. Dots inside every cell are flipped too (1↔4, 2↔5, 3↔6). While printing, dark dots are punched and the pulsing dot is being punched now.</p>
+</section>
+
+<script src="core.js"></script>
+<script src="invert.js"></script>
+</body>
+</html>
